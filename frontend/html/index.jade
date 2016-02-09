@@ -1,0 +1,18 @@
+- var pageTitle = "Page Title";
+
+doctype html
+html(lang="ru")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    title= pageTitle
+    link(rel="stylesheet" type="text/css" href="assets/css/index.css")/
+    <!--[if lt IE 9]>
+    script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+    <![endif]-->
+    h1 Hello world!
+    
+    include ./blocks/scripts.jade
+    script(src="assets/js/index.js" defer)
+  body
