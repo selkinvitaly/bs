@@ -14,9 +14,8 @@ module.exports = function(options) {
   let src     = options && options.src;
   let dest    = options && options.dest;
   let plugins = options && options.plugins;
-  let reload  = options && options.reload;
 
-  if (!src || !dest || !plugins || !reload) {
+  if (!src || !dest || !plugins) {
     throw new gutil.PluginError("gulp-jade", "html: incorrect config", {showStack: true});
   }
 
@@ -25,8 +24,7 @@ module.exports = function(options) {
       .pipe(jadeInh(plugins.jadeInheritance))
       .pipe(jade(plugins.jade))
       .on("error", notify.onError({ title: "HTML task" }))
-      .pipe(gulp.dest(dest))
-      .pipe(gulpIf(isWatched, reload({ stream: true })));
+      .pipe(gulp.dest(dest));
   };
 
 };

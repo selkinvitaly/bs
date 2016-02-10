@@ -31,26 +31,24 @@ gulp.task("fonts", lazyTask("./build/tasks/fonts", {
 
 gulp.task("bsync", lazyTask("./build/tasks/bsync", {
   server: bsync,
-  plugins: config.plugins
+  plugins: config.plugins,
+  paths: config.tasks.bsync
 }));
 
 gulp.task("css", lazyTask("./build/tasks/css", {
   src: config.tasks.css.src,
   dest: config.tasks.css.dest,
-  plugins: config.plugins,
-  reload: bsync.reload
+  plugins: config.plugins
 }));
 
 gulp.task("html", lazyTask("./build/tasks/html", {
   src: config.tasks.html.src,
   dest: config.tasks.html.dest,
-  plugins: config.plugins,
-  reload: bsync.reload
+  plugins: config.plugins
 }));
 
 gulp.task("js", lazyTask("./build/tasks/js", {
-  plugins: config.plugins,
-  reload: bsync.reload
+  plugins: config.plugins
 }));
 
 gulp.task("js:copy", lazyTask("./build/tasks/js-copy", {

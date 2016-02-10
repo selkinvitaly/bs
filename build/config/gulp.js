@@ -34,6 +34,15 @@ module.exports = function(root) {
       dest: "./dist/assets/img/"
     },
 
+    bsync: {
+      js: "./dist/assets/js/**/*.js",
+      css: "./dist/assets/css/**/*.css",
+      html: "./dist/**/*.html",
+      fonts: "./dist/assets/fonts/**/*.*",
+      img: "./dist/assets/img/content/**/*.*",
+      sprite: "./dist/assets/img/sprite.svg"
+    },
+
     fonts: {
       src: "./frontend/fonts/**/*.*",
       dest: "./dist/assets/fonts/"

@@ -18,13 +18,12 @@ module.exports = function(options) {
   let src     = options && options.src;
   let dest    = options && options.dest;
   let plugins = options && options.plugins;
-  let reload  = options && options.reload;
 
   let processors = [
     prefix(plugins.autoprefixer)
   ];
 
-  if (!src || !dest || !plugins || !reload) {
+  if (!src || !dest || !plugins) {
     throw new gutil.PluginError("gulp-stylus", "css: incorrect config", {showStack: true});
   }
 
@@ -37,8 +36,7 @@ module.exports = function(options) {
       .pipe(gulpIf(isWatched, smaps.write()))
       .pipe(base64(plugins.cssBase64))
       .pipe(gulpIf(isDev, csscomb()))
-      .pipe(gulp.dest(dest))
-      .pipe(gulpIf(isWatched, reload({ stream: true })));
+      .pipe(gulp.dest(dest));
   };
 
 };
