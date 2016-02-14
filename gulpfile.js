@@ -48,6 +48,8 @@ gulp.task("html", lazyTask("./build/tasks/html", {
 }));
 
 gulp.task("js", lazyTask("./build/tasks/js", {
+  src: config.tasks.js.src,
+  dest: config.tasks.js.dest,
   plugins: config.plugins
 }));
 

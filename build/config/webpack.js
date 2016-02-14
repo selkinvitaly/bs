@@ -3,25 +3,24 @@
 const path         = require("path");
 const hash         = require("../helpers/hash");
 const isDev        = require("../helpers/isDev");
+const isWatched    = require("../helpers/isWatched");
 const webpack      = require("webpack");
 const AssetsPlugin = require("assets-webpack-plugin");
 
 module.exports = function(root) {
 
   let options = {
+    watch: isWatched,
     context: root,
-    entry: {
-      index: ["./frontend/js/index"]
-    },
     output: {
-      path: path.join(root, "./dist/"),
-      filename: hash("assets/js/[name].js", "chunkhash", isDev),
-      chunkFilename: hash("assets/js/[id].js", "chunkhash", isDev),
+      path: root,
+      filename: hash("[name].js", "chunkhash", isDev),
+      chunkFilename: hash("[id].js", "chunkhash", isDev),
       publicPath: "",
       pathinfo: isDev
     },
-    debug: isDev,
-    devtool: isDev ? "cheap-module-source-map" : null,
+    debug: isWatched,
+    devtool: isWatched ? "cheap-module-source-map" : null,
     resolve: {
       modulesDirectories: ["node_modules"],
       extensions: ["", ".js", ".jsx"]
@@ -46,26 +45,16 @@ module.exports = function(root) {
     }
   };
 
-  // minification
+  // optimize
   if (!isDev) {
-    options.plugins.push(
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          "warnings": false,
-          "drop_debugger": true,
-          "drop_console" : true,
-          "unsafe": true
-        }
-      }),
-      new webpack.optimize.OccurenceOrderPlugin()
-    );
+    options.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
   }
 
   // JSON of assets for bundles
   if (!isDev) {
     options.plugins.push(new AssetsPlugin({
       path: path.join(root, "dist"),
-      filename: "assets.json",
+      filename: "webpack.json",
       prettyPrint: true
     }));
   }

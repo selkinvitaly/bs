@@ -11,7 +11,7 @@ module.exports = function(options) {
   }
 
   return gulp.series("build", gulp.parallel(function(cb) {
-    gulp.watch(paths.js, gulp.series("js:copy", "js"));
+    gulp.watch(paths.jsCopy, gulp.parallel("js:copy"));
     gulp.watch(paths.css, gulp.parallel("css"));
     gulp.watch(paths.base64, gulp.parallel("css"));
     gulp.watch(paths.html, gulp.parallel("html"));

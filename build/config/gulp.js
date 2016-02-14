@@ -16,6 +16,11 @@ module.exports = function(root) {
       dest: "./dist/assets/img/"
     },
 
+    js: {
+      src: "./frontend/js/*.js",
+      dest: "./dist/assets/js/"
+    },
+
     jsCopy: {
       src: ["./frontend/js/vendor/jquery-3.0.0-beta1.min.js", "./frontend/js/vendor/svg4everybody.min.js"],
       dest: "./dist/assets/js/"
@@ -60,7 +65,7 @@ module.exports = function(root) {
     },
 
     watch: {
-      js: "./frontend/js/**/*.js",
+      jsCopy: ["./frontend/js/vendor/jquery-3.0.0-beta1.min.js", "./frontend/js/vendor/svg4everybody.min.js"],
       css: "./frontend/css/**/*.styl",
       html: "./frontend/html/**/*.jade",
       fonts: "./frontend/fonts/**/*.*",
@@ -138,6 +143,15 @@ module.exports = function(root) {
       modules: false,
       cached: true,
       colors: true
+    },
+
+    uglify: {
+      compress: {
+        "warnings": false,
+        "drop_debugger": true,
+        "drop_console" : true,
+        "unsafe": true
+      }
     }
 
   };
