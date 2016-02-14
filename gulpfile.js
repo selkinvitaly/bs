@@ -60,7 +60,7 @@ gulp.task("js:copy", lazyTask("./build/tasks/js-copy", {
 
 gulp.task("copy", gulp.parallel("img", "fonts", "js:copy", "sprite"));
 
-gulp.task("build", gulp.series("clean", gulp.parallel("copy", "css", "html", "js")));
+gulp.task("build", gulp.series("clean", gulp.parallel("copy", "js", "css"), "html"));
 
 gulp.task("watch", lazyTask("./build/tasks/watch", {
   paths: config.tasks.watch

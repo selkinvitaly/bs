@@ -5,10 +5,6 @@ const gulp    = require("gulp");
 const webpack = require("webpack-stream");
 const named   = require("vinyl-named");
 const notify  = require("gulp-notify");
-const gulpIf  = require("gulp-if");
-const uglify  = require("gulp-uglify");
-
-const isDev = require("../helpers/isDev");
 
 let firstBuildReady = false;
 
@@ -36,7 +32,6 @@ module.exports = function(options) {
       .pipe(named())
       .pipe(webpack(plugins.webpack, null, done))
       .on("error", notify.onError({ title: "JS task" }))
-      .pipe(gulpIf(!isDev, uglify(plugins.uglify)))
       .pipe(gulp.dest(dest))
       .on("data", () => {
         if (firstBuildReady && !cb.called) {

@@ -3,6 +3,12 @@
 const path  = require("path");
 const isDev = require("../helpers/isDev");
 
+let manifest = null;
+
+try {
+  manifest = require("../../dist/manifest.json");
+} catch (e) {}
+
 module.exports = function(root) {
   let cfgWebpack = require("./webpack")(root);
   let tasks = {
@@ -120,6 +126,13 @@ module.exports = function(root) {
       debug: false
     },
 
+    rev: {
+      merge: true,
+      base: "dist/"
+    },
+
+    revOutput: "dist/manifest.json",
+
     jadeInheritance: {
       basedir: tasks.html.basedir
     },
@@ -129,7 +142,10 @@ module.exports = function(root) {
     },
 
     jade: {
-      pretty: isDev
+      pretty: isDev,
+      locals: {
+        assets: manifest
+      }
     },
 
     webpack: cfgWebpack,
@@ -143,15 +159,6 @@ module.exports = function(root) {
       modules: false,
       cached: true,
       colors: true
-    },
-
-    uglify: {
-      compress: {
-        "warnings": false,
-        "drop_debugger": true,
-        "drop_console" : true,
-        "unsafe": true
-      }
     }
 
   };

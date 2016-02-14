@@ -10,6 +10,7 @@ const gulpIf  = require("gulp-if");
 const smaps   = require("gulp-sourcemaps");
 const csscomb = require("gulp-csscomb");
 const notify  = require("gulp-notify");
+const rev     = require("gulp-rev");
 
 const isDev = require("../helpers/isDev");
 const isWatched = require("../helpers/isWatched");
@@ -36,7 +37,10 @@ module.exports = function(options) {
       .pipe(gulpIf(isWatched, smaps.write()))
       .pipe(base64(plugins.cssBase64))
       .pipe(gulpIf(isDev, csscomb()))
-      .pipe(gulp.dest(dest));
+      .pipe(gulpIf(!isDev, rev()))
+      .pipe(gulp.dest(dest))
+      .pipe(gulpIf(!isDev, rev.manifest(plugins.revOutput, plugins.rev)))
+      .pipe(gulpIf(!isDev, gulp.dest(plugins.rev.base)));
   };
 
 };

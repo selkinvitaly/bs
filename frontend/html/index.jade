@@ -1,5 +1,6 @@
 - var pageTitle = "Page Title";
-
+- var indexJS   = "assets/js/" + (assets && assets["index.js"] ? assets["index.js"] : "index.js");
+- var indexCSS  = "assets/css/" + (assets && assets["index.css"] ? assets["index.css"] : "index.css");
 doctype html
 html(lang="ru")
   head
@@ -7,12 +8,12 @@ html(lang="ru")
     meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     title= pageTitle
-    link(rel="stylesheet" type="text/css" href="assets/css/index.css")/
+    link(rel="stylesheet" type="text/css" href= indexCSS)/
     <!--[if lt IE 9]>
     script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
     <![endif]-->
     h1 Hello world!
     
     include ./blocks/scripts.jade
-    script(src="assets/js/index.js" defer)
+    script(src= indexJS defer)
   body
