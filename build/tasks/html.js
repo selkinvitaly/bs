@@ -4,11 +4,7 @@ const gulp    = require("gulp");
 const gutil   = require("gulp-util");
 const jade    = require("gulp-jade");
 const jadeInh = require("gulp-jade-inheritance");
-const gulpIf  = require("gulp-if");
 const notify  = require("gulp-notify");
-
-const isDev     = require("../helpers/isDev");
-const isWatched = require("../helpers/isWatched");
 
 module.exports = function(options) {
   let src     = options && options.src;
