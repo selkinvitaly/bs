@@ -32,14 +32,6 @@ module.exports = function(root) {
       dest: "./dist/assets/js/"
     },
 
-    cheerio: {
-      run: function($) {
-        $("[fill]").removeAttr("fill");
-        $("[style]").removeAttr("style");
-      },
-      parserOptions: { xmlMode: true }
-    },
-
     sprite: {
       src: ["./frontend/img/sprite/**/*.svg"],
       dest: "./dist/assets/img/"
@@ -101,6 +93,14 @@ module.exports = function(root) {
 
     stylus: {
       compress: !isDev
+    },
+
+    cheerio: {
+      run: function($) {
+        $("[fill]").removeAttr("fill");
+        $("[style]").removeAttr("style");
+      },
+      parserOptions: { xmlMode: true }
     },
 
     svgSprite: {
