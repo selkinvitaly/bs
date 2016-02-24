@@ -11,6 +11,16 @@ module.exports = function(options) {
   let dest    = options && options.dest;
   let plugins = options && options.plugins;
 
+  let manifest = null;
+
+  try {
+    manifest = require("../../dist/manifest.json");
+  } catch (e) {}
+
+  plugins.jade.locals = {
+    assets: manifest
+  }
+
   if (!src || !dest || !plugins) {
     throw new gutil.PluginError("gulp-jade", "html: incorrect config", {showStack: true});
   }

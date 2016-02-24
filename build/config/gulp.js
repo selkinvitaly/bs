@@ -3,12 +3,6 @@
 const path  = require("path");
 const isDev = require("../helpers/isDev");
 
-let manifest = null;
-
-try {
-  manifest = require("../../dist/manifest.json");
-} catch (e) {}
-
 module.exports = function(root) {
   let cfgWebpack = require("./webpack")(root);
   let tasks = {
@@ -142,10 +136,7 @@ module.exports = function(root) {
     },
 
     jade: {
-      pretty: isDev,
-      locals: {
-        assets: manifest
-      }
+      pretty: isDev
     },
 
     webpack: cfgWebpack,
