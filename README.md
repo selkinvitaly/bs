@@ -6,11 +6,12 @@ The base files for build system with gulp and webpack
 npm run build:dev
 npm run build:prod
 npm run clean
+npm run watch
 ```
 
-Note that these tasks require global installation for gulp4 and webpack:
+Note that these tasks require global installation for [gulp4](https://github.com/gulpjs/gulp):
 ```bash
-sudo npm i -g webpack gulpjs/gulp#4.0
+sudo npm i -g gulpjs/gulp#4.0
 ```
 
 If you have win system then you need replace scripts block in package.json:
